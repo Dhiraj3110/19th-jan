@@ -1,0 +1,42 @@
+q)Given a string s consisting of words and spaces, return the length of the last word in the string. 
+A word is a maximal substring consisting of non- space characters only.
+
+code:
+
+#include <bits/stdc++.h>
+using namespace std;
+int lengthOfLastWord(string s) 
+{
+        
+        int n=end(s)-begin(s);
+        if(n==0) return 0;
+        
+        int start,end;
+        
+        start=0;
+        while(start< n && s[start]==' ') start++;      //left trim
+        
+        end=n-1;
+        while(end >=0 && s[end]==' ') end--;         //right trim
+        
+        if(start>end) return 0;
+        
+        int pos=end;
+        while(pos>=start)
+        {
+            if(s[pos]==' ') return end-pos;
+            else pos--;
+        }
+        
+        return end-pos;
+        
+}
+int main() 
+{
+    string s;
+    getline(cin,s);
+    
+    cout<<lengthOfLastWord(s)<<endl;
+    
+  return 0; 
+}
